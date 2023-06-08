@@ -13,6 +13,7 @@ class HashDictionary:
         for i, (k, v) in enumerate(chain):
             if k == key:
                 chain[i] = (key, value)
+                return
 
         chain.append((key, value))
 
@@ -23,7 +24,7 @@ class HashDictionary:
         for i, (k, v) in enumerate(chain):
             if k == key:
                 del chain[i]
-                return
+                return True
 
         return False
 
@@ -35,10 +36,25 @@ class HashDictionary:
             if k == key:
                 return v
 
-        return False
+        return None
 
 
 def display(dictionary):
     for chain in dictionary.table:
-        for k, v in chain:
-            print(f"Key = {k} and Value = {v}")
+        for key, value in chain:
+            print(f"Key - {key}, Value - {value}")
+
+
+dictio = HashDictionary(10)
+
+dictio.insert("apple", 100)
+dictio.insert("banana", 200)
+dictio.insert("grapes", 300)
+
+display(dictio)
+
+print(dictio.find("banana"))
+
+dictio.delete("banana")
+
+display(dictio)
